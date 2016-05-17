@@ -1,0 +1,128 @@
+﻿
+.btn-primary {
+    color: #FFF;
+    background-color: #660000;
+    border-color: #660000;
+}
+
+/* Button */
+
+.btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open > .dropdown-toggle.btn-primary {
+    color: #FFF;
+    background-color: #3F0000;
+    border-color: #3F0000;
+}
+
+/* ===Side Bar=== */
+
+.sidebar {
+    z-index: 1;
+    position: absolute;
+    width: 250px;
+    margin-top: 51px;
+}
+
+.sidebar .arrow {
+    float: right;
+}
+
+.sidebar .sidebar-nav.navbar-collapse {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+/* side bar search */
+
+.sidebar .sidebar-search {
+    padding: 15px;
+}
+
+.sidebar ul li {
+    border-bottom: 1px solid #E7E7E7;
+
+}
+
+/* Active */
+.sidebar ul li a.active {
+    background-color: #EEE;
+}
+
+/* ===Top Link=== */
+
+.navbar-top-links {
+    margin-right: 0px;
+}
+
+.navbar-top-links li {
+    display: inline-block;
+}
+
+.navbar-top-links li a {
+    padding: 15px;
+    min-height: 50px; 
+}
+
+/* === SUB PAGE ==*/ 
+
+.sub-page * {
+    float: right;
+    padding-right: 260px;
+    word-wrap: break-word;
+}
+
+.login-style {
+	width:350px; 
+}
+
+.siu-color {
+color: #660000 ; 
+}
+
+.siu-backgroundcolor {
+background-color: #660000 ; 
+border-color: #660000 ;
+}
+
+/* Fixed bar problem*/
+
+
+
+/* === TableS === */
+
+/* Database Table */
+
+.ajk-table {
+  border: 5px solid #ccc;
+  padding: 15px;
+  margin: 5% 0;
+  box-shadow: 3px 3px 2px #ccc;
+  transition: 0.5s;
+	border-collapse: separate;
+
+}
+
+
+.ajk-table:hover {
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}
+
+.ajk-table tr {
+	padding-bottom: 15em;
+	background-color: #E8E8E8 ; 
+}
+
+.ajk-title {
+    background-color: #E8E8E8 ;
+}
+.ajk-title img {
+  float: left;
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.ajk-title h1{
+  position: relative;
+  top: 18px;
+  left: 10px;
+}

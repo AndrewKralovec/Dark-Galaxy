@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="style.css" rel="stylesheet" />
+
+<div class="row">
+    <!-- fix the width style error -->
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+        <!--  Display Widgets  -->
+        <div class="row">
+            <!-- Semester and date widget -->
+            <div class="col-lg-4 col-md-6">
+                <div class="panel widget bg-success">
+                    <div class="row row-table">
+                        <div class="col-xs-6 text-center bg-success-dark pv-lg">
+                            <span class="fa-stack fa-5x">
+                                <i class="fa fa-circle fa-stack-2x text-prime"></i>
+                                <i class="fa fa-calendar fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h1 m0 text-bold">Semester fall </div>
+                            <div id="demo">12/01/2015</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Number of classes widget -->
+            <div class="col-lg-4 col-md-6">
+                <div class="panel widget bg-danger">
+                    <div class="row row-table">
+                        <div class="col-xs-6 text-center bg-danger-dark pv-lg">
+
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="ajk-Image">
+                                <img src="/Images/Galaxy.png" class="img-rounded" alt="DarkGalaxy icon" width="200" height="142">
+                                <h2 class="text-center">Dark Dark Galaxy </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Number of classes widget -->
+            <div class="col-lg-4 col-md-6">
+                <div class="panel widget bg-warning">
+                    <div class="row row-table">
+                        <div class="col-xs-6 text-center bg-warning-dark pv-lg">
+                            <span class="fa-stack fa-5x">
+                                <i class="fa fa-circle fa-stack-2x text-prime"></i>
+                                <i class="fa  fa-archive fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h1 m0 text-bold">
+                                Active Classes
+                            </div>
+                            <div class="text-uppercase">12</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Some visual botton appeal-->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Content</h2>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-circle fa-stack-2x text-prime"></i>
+                            <i class="fa fa-group fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Faculty</h4>
+                        <p>View Facutly records</p>
+                        <a href="forum.php" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-circle fa-stack-2x text-prime"></i>
+                            <i class="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Tutorial</h4>
+                        <p>Follow the tutorials</p>
+                        <a href="" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-circle fa-stack-2x text-prime"></i>
+                            <i class="fa fa-calendar-plus-o  fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Schedule</h4>
+                        <p>Schedule classes</p>
+                        <a href="projects.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <span class="fa-stack fa-5x">
+                            <i class="fa fa-circle fa-stack-2x text-prime"></i>
+                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Contact</h4>
+                        <p>Send message</p>
+                        <a href="contact.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd='0'+dd
+}
+
+if(mm<10) {
+    mm='0'+mm
+}
+ today = mm+'/'+dd+'/'+yyyy ;
+
+document.getElementById('demo').innerHTML = today ;
+
+
+</script>

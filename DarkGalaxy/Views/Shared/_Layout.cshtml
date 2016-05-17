@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content="andrew"></meta>
+
+    <title>Dark Dark Galaxy Entrance</title>
+    <!-- CSS -->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Style.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@Url.Action("Index","Home")">Dark Galaxy Admin page</a>
+
+        </div>
+
+        <!-- Top links -->
+        <ul class="nav navbar-top-links navbar-right">
+            <!-- User drop down menu -->
+            <li><a href=""><i class="fa fa-paw fa-fw"></i>  <i class="fa fa-caret-down"></i> </a> </li>
+            <li><a href=""><i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i> </a> </li>
+            <li><a href="@Url.Action("Index","Home")"><i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i></a> </li>
+        </ul>
+
+
+
+        <!-- Side bar -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav in" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input class="form-control" placeholder="Search..." type="text"></input>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Calendar","Home")"><i class="fa fa-calendar fa-fw"></i>Calender</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Database","Home")"><i class="fa fa-database fa-fw"></i>Database</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Schedule","Home")"><i class="fa fa-wrench fa-fw"></i>Tools<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse"></ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-files-o fa-fw"></i>File Manager<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li>
+                                <a href="blank.html">Blank pdf</a>
+                            </li>
+                            <li>
+                                <a href="page.html">Page pdf</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

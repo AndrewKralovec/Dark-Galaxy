@@ -1,0 +1,107 @@
+﻿{
+"records": [
+  	{
+    "Course" : "105",
+    "Section" : "1",
+    "Max" : "25",
+	"CRN" : "64770",
+	"Instructor" : "Sindoora Koneru",
+	"Days" : "MW",
+	"Time" : "3:00 - 3:50 p.m.",
+	"Room" : "FANR 1024",
+	"Notes" : "FALSE"
+	},
+	{
+    "Course" : "200b",
+    "Section" : "1",
+    "Max" : "225",
+	"CRN" : "64771- 64779",
+	"Instructor" : "Mogharreban",
+	"Days" : "MW",
+	"Time" : "3:00 - 4:15 p.m.",
+	"Room" : "PARK 124",
+	"Notes" : "FALSE"
+	},
+	{
+    "Course" : "201",
+    "Section" : "1",
+    "Max" : "50",
+	"CRN" : "64771- 64779",
+	"Instructor" : "Wainer",
+	"Days" : "MW",
+	"Time" : "9:00 - 9:50 a.m.",
+	"Room" : "FANR 1326",
+	"Notes" : "FALSE"
+	},
+	{
+    "Course" : "202",
+    "Section" : "1",
+    "Max" : "225",
+	"CRN" : "64771- 64779",
+	"Instructor" : "Mogharreban",
+	"Days" : "MWF",
+	"Time" : "9:00 - 9:50 a.m.",
+	"Room" : "LWSN 101",
+	"Notes" : "FALSE"
+	},
+	{
+    "Course" : "215",
+    "Section" : "1",
+    "Max" : "40",
+	"CRN" : "64815",
+	"Instructor" : "Nojoumian",
+	"Days" : "TR",
+	"Time" : "11:00 - 12:50 a.m.",
+	"Room" : "EGRA 408",
+	"Notes" : "FALSE"
+	},
+	{
+    "Course" : "220",
+    "Section" : "1",
+    "Max" : "25",
+	"CRN" : "64816",
+	"Instructor" : "Carver",
+	"Days" : "MWF",
+	"Time" : "1:00 - 1:50 p.m.",
+	"Room" : "PULL 41",
+	"Notes" : "FALSE"
+	},
+	{
+    "Course" : "305",
+    "Section" : "1",
+    "Max" : "15",
+	"CRN" : "66721",
+	"Instructor" : "CANCELLED",
+	"Days" : "MWF",
+	"Time" : "2:00 ?2:50 p.m.",
+	"Room" : "LNDG 18",
+	"Notes" : "FALSE"
+	},
+	{
+    "Course" : "306",
+    "Section" : "1",
+    "Max" : "30",
+	"CRN" : "67774",
+	"Instructor" : "Carver",
+	"Days" : "MWF",
+	"Time" : "3:00 ?3:50 p.m.",
+	"Room" : "FANR 1326",
+	"Notes" : "FALSE"
+	},
+	{
+    "Course" : "311",
+    "Section" : "1",
+    "Max" : "35",
+	"CRN" : "64818",
+	"Instructor" : "Rahimi",
+	"Days" : "TR",
+	"Time" : "2:00 ?3:15 p.m.",
+	"Room" : "PARK 108",
+	"Notes" : "FALSE"
+	}
+]
+}
+
+
+
+

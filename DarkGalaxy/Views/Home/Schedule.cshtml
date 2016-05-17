@@ -1,0 +1,345 @@
+﻿
+@{
+    ViewBag.Title = "Schedule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Teacher Databse -->
+<body>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <!-- Nested controllers not working, switching to one root controller because of time -->
+    <div class="container" ng-app="myApp" ng-controller="rootCtrl">
+        <div class="row">
+            <img src="~/Images/header.jpg" class="img-rounded" alt="fall header" width="100%" height="100%">
+        </div>
+        <div class="row">
+            <h1>Schedule Courses </h1>
+            <p class="ajk-p">
+                Select a Course and a room, for automated scheduling process.
+                Once you receive the success message, you will be able to see the schedule change in the Database Page
+                <a class="navbar-brand" href="@Url.Action("Database","Home")">
+                    <i class="fa fa-arrow-circle-right fa-2x"></i>
+                </a>
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Courses</h2>
+                <p>The form below contains list of cs courses</p>
+                <select ng-options="course.number as course.name for course in courses" ng-model="course">
+                    <option style="display:none" value="">select a course</option>
+                </select>
+                <br>selected: {{course}}
+            </div>
+            <div class="col-sm-6">
+                <h2>Room</h2>
+                <p>The form below contains list of cs courses</p>
+                <select ng-options="room as room.name for room in rooms" ng-model="room">
+                    <option style="display:none" value="">select a room</option>
+                </select>
+                <!-- Note to self, check out why room.name is not getting wrapped in room -->
+                <br>selected: {{room.name}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Teacher</h2>
+                <p>The form below contains list of cs courses</p>
+                <select ng-options="teacher as teacher.name for teacher in teachers" ng-model="teacher">
+                    <option style="display:none" value="">select a Teacher</option>
+                </select>
+                <!-- Note to self, check out why room.name is not getting wrapped in room -->
+                <br>selected: {{teacher.name}}
+            </div>
+            <div class="col-sm-6">
+                <form name="timeForm" novalidate>
+                    <h2>Time </h2>
+                    <p>Select times between 8:00AM to 6:00PM (military time), then the days it will be tought </p>
+                    <div class="col-sm-3">
+                        <p>Start time</p>
+                        <input ng-model="startTime" name="startTime" type="text" placeholder="HH:mm:ss" min="08:00:00" max="18:00:00" required />
+                        <p ng-show="startTime < 18:00:00 && startTime > 08:00:00">selected: {{startTime | date:"dd MMM yy" }}</p>
+                       <!-- <span style="color:red" class="error" ng-show="timeForm.startTime.$error">Invalid Time</span> --> 
+                    </div>
+                    <div class="col-sm-3">
+                        <p>End time</p>
+                        <!-- Angular validation is showing up no matter what , will just do the logic in the ng-show -->
+                        <input ng-model="endTime" name="endTime" type="text" placeholder="HH:mm:ss" min="08:00:00" max="18:00:00" required />
+                        <p ng-show="endTime < 18:00:00 && endTime > 08:00:00">selected: {{endTime | date:"dd MMM yy" }}</p>
+                        <!-- <span style="color:red" ng-show="timeForm.endTime.$error">Invalid Time</span> -->
+
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Days</p>
+                        <input type="text" name="daysOfWeek" ng-model="daysOfWeek" placeholder="MWF" required>
+                   </div>
+                </form>
+            </div>
+            <div class="row">
+                <label>Schedule</label>
+                <button type="button" ng-click="submitCourse(course,room.name,teacher.name,startTime,endTime,daysOfWeek)" class="btn btn-secondary btn-lg btn-block">Schedule Course</button>
+                <br />
+                <label ng-model="finalOutput">Final output </label>
+                <!-- C ustome filter not working -->
+                <p>
+                    {{ finalOutput = course+' '+room.name+' '+teacher.name+' '+startTime+' '+endTime+' '+daysOfWeek }}
+                </p>
+            </div>
+        </div>
+    </div>
+        <script>
+var app = angular.module('myApp', []);
+
+
+app.controller('rootCtrl', function ($scope, $http) {
+
+  function refresh(){
+    $rootScope = $rootScope.$new(true);
+  };
+
+    $scope.submitCourse = function (course, room, teacher, startTime, endTime, days) {
+        var newItem = {
+            Course: course,
+            Section: "Default",
+            Max: "Default",
+            CRN: "Default",
+            Instructor: teacher,
+            Days: days,
+            Room: room,
+            startTime: startTime,
+            endTime: endTime,
+            Notes:"Default" 
+        };
+        // Null errors going crazy 
+        alert("Course: " + newItem.Course + ' ' + newItem.Room + ' ' + newItem.Instructor + ' ' + newItem.startTime + ' ' + newItem.endTime + ' ' + newItem.Days);
+        $http.post('/Scheudle/KralovecSCH', newItem).success(function (response) {
+            alert("Response" + JSON.stringify(response));
+            if(response == "True"){
+              alert("Class added");
+            }else{
+              alert("Error class not added");
+              refresh();
+            }
+        }).error(function (error) {
+            alert("Get Error: " + error);
+        });
+    }
+
+  $scope.courses = [{
+    name: "CS 200B Computer Concepts ",
+    number: "200"
+  }, {
+    name: "CS 201 Problem Solving with Computers ",
+    number: "201"
+  }, {
+    name: "CS 202 Introduction to Computer Science ",
+    number: "202"
+  }, {
+    name: "CS 215 Discrete Mathematics ",
+    number: "215"
+  }, {
+    name: "CS 220 Programming with Data Structures ",
+    number: "220"
+  }, {
+    name: "CS 221 Introduction to Internet and Mobile Computing ",
+    number: "221"
+  }, {
+    name: "CS 280 Computational Statistics I ",
+    number: ""
+  }, {
+    name: "CS 290 Communication Skills and Ethics for Computer Science ",
+    number: ""
+  }, {
+    name: "CS 300 Introduction to Linux ",
+    number: "300"
+  }, {
+    name: "CS 301 Introduction to Visual Basic ",
+    number: "301"
+  }, {
+    name: "CS 304 Advanced Object-Oriented Programming ",
+    number: "304"
+  }, {
+    name: "CS 305 Software Development Practices ",
+    number: "305"
+  }, {
+    name: "CS 306 Linux/UNIX Programming ",
+    number: "306"
+  }, {
+    name: "CS 311 The Theory and Implementation of Programming Languages ",
+    number: "311"
+  }, {
+    name: "CS 315 Computer Logic and Digital Design ",
+    number: "315"
+  }, {
+    name: "CS 320 Computer Organization and Architecture ",
+    number: "320"
+  }, {
+    name: "CS 330 Introduction to the Design and Analysis of Algorithms ",
+    number: "330"
+  }, {
+    name: "CS 335 Operating Systems ",
+    number: "335"
+  }, {
+    name: "CS 350 Web Application Development ",
+    number: "350"
+  }, {
+    name: "CS 391 Current Topics in Computer Science ",
+    number: "391"
+  }, {
+    name: "CS 393 Internship in Computer Science ",
+    number: "393"
+  }, {
+    name: "CS 399 Social, Ethical and Professional Issues in Computer Science ",
+    number: "399"
+  }, {
+    name: "CS 401 Computer Architecture ",
+    number: "401"
+  }, {
+    name: "CS 402 Theory and Applications of Computer Aided Design ",
+    number: "402"
+  }, {
+    name: "CS 404 Autonomous Mobile Robots ",
+    number: "404"
+  }, {
+    name: "CS 406 Basic Linux System Administration ",
+    number: "406"
+  }, {
+    name: "CS 407 Advanced Linux/UNIX Programming (New Fall 2016) ",
+    number: "407"
+  }, {
+    name: "CS 408 Applied Cryptography ",
+    number: "408"
+  }, {
+    name: "CS 410 Computer Security ",
+    number: "410"
+  }, {
+    name: "CS 412 Programming Distributed Applications ",
+    number: "412"
+  }, {
+    name: "CS 416 Compiler Construction ",
+    number: "416"
+  }, {
+    name: "CS 420 Distributed Systems ",
+    number: "420"
+  }, {
+    name: "CS 430 Database Systems ",
+    number: "430"
+  }, {
+    name: "CS 435 Software Engineering ",
+    number: "435"
+  }, {
+    name: "CS 436 Artificial Intelligence I ",
+    number: "436"
+  }, {
+    name: "CS 437 Machine Learning and Soft Computing ",
+    number: "437"
+  }, {
+    name: "CS 438 Bioinformatics Algorithms ",
+    number: "438"
+  }, {
+    name: "CS 440 Computer Networks ",
+    number: "440"
+  }, {
+    name: "CS 441 Mobile and Wireless Computing ",
+    number: "441"
+  }, {
+    name: "CS 447 Introduction to Graph Theory ",
+    number: "447"
+  }, {
+    name: "CS 449 Introduction to Combinatorics ",
+    number: "449"
+  }, {
+    name: "CS 451 Theory of Computing ",
+    number: "451"
+  }, {
+    name: "CS 455 Advanced Algorithm Design and Analysis ",
+    number: "455"
+  }, {
+    name: "CS 471 Optimization Techniques ",
+    number: "471"
+  }, {
+    name: "CS 472 Linear Programming ",
+    number: "472"
+  }, {
+    name: "CS 475 Numerical Analysis ",
+    number: "475"
+  }, {
+    name: "CS 476 Numerical Analysis II ",
+    number: "476"
+  }, {
+    name: "CS 480 Computational Statistics II ",
+    number: "480"
+  }, {
+    name: "CS 484 User Interface Design and Development ",
+    number: "484"
+  }, {
+    name: "CS 485 Computer Graphics ",
+    number: "485"
+  }, {
+    name: "CS 487 Software Aspects of Game Development ",
+    number: "487"
+  }, {
+    name: "CS 490 Readings ",
+    number: "490"
+  }, {
+    name: "CS 492 Special Problems ",
+    number: "492"
+  }, {
+    name: "CS 493 Seminar ",
+    number: "493"
+  }, {
+    name: "CS 498 Senior Project in Computer Science I ",
+    number: "498"
+  }, {
+    name: "CS 499 Senior Project in Computer Science II ",
+    number: "499"
+  }];
+
+  $scope.rooms = [{
+      name: "FANR 1",
+  }, {
+    name: "FANR 2",
+  }, {
+      name: "FANR 3",
+  }, {
+      name: "FANR 4",
+  }, {
+      name: "FANR 5",
+  }, {
+      name: "FANR 6"
+  }, {
+      name: "FANR 7"
+  }];
+
+  $scope.teachers = [{
+      // Keep Last name for testing 
+      name: "Carver"  // Norman Carver
+  }, {
+      name: "Che" // Dunren Che
+  }, {
+      name: "Cheng" // Qiang Cheng"
+  }, {
+      name: "Gupta"// Bidyut Gupta"
+  }, {
+      name: "Hexmoor" // Henry Hexmoor
+  }, {
+      name: "Mogharreban" // Namdar Mogharreban
+  }];
+
+  app.filter('emptyFilter', function() {
+    return function(input) {
+      var output;
+      if (input == 0) {
+        output = " "
+      } else {
+        output = input;
+      }
+      return output;
+    }
+  });
+
+
+});
+        </script>
+</body>
